@@ -12,11 +12,15 @@ use Net::SMTP;
 use Time::HiRes qw(gettimeofday);
 
 my $start = gettimeofday();
+
 my $smtp = Net::SMTP->new("$ARGV[0]",
-Hello => 'rackspace.com',
-Timeout => 20) or die "Cannot connect to remote smtp: $@";
+            Hello => 'rackspace.com',
+            Timeout => 20) or die "Cannot connect to remote smtp: $@";
+
 my $response = $smtp->banner;
+
 my $fin = gettimeofday();
+
 my $tot_time = ($fin - $start);
 
 printf "%s", $response;
